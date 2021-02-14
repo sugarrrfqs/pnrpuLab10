@@ -1,0 +1,59 @@
+#include <iostream>
+#include <string.h>
+
+using namespace std;
+
+int main()
+{
+  int length=0, i=0, j=0, numberOfDeleted=0;
+  cout<<"Введите количество строк ";
+  cin>>length;
+  string* array=new string [length];
+
+  if (!(array == NULL)) // Если память была выделена
+  {
+
+    cout<<"\nВведите ваши строки\n";
+    for (i=0;i<length;i++) // Вводим строки
+    {
+       cin>>array[i];
+    }
+    
+    bool* f=new bool [length];
+    for (i=0;i<length;i++) // Проверяем строки на то, подходят ли они условию
+    {
+      f[i]=false;
+      if (array[i][0]=='a' && array[i][array[i].length()-1]== 'a') 
+      {
+        f[i]=true;
+        numberOfDeleted++;
+      }
+    }
+
+    string* newArray=new string [length-numberOfDeleted];
+    for (i=0;i<length;i++) // Создаем новый массив после удаления строк
+    {
+      if (!f[i]) 
+      {
+        newArray[j]=array[i];
+        j++;
+      }
+    }
+    
+
+    cout<<"Новый массив строк, его длина: "<<length-numberOfDeleted;
+    for (i=0;i<length-numberOfDeleted;i++)
+    {
+      cout<<'\n'<<newArray[i];
+    }
+    
+    delete [] array;
+    delete [] newArray;
+  }
+ 
+  else 
+  {
+    cout<<"Не удалось выделить память под массив";
+    }
+
+}
